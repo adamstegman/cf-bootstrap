@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+AWS_REGION=${AWS_REGION:-us-west-1}
+AWS_AVAILABILITY_ZONE=${AWS_AVAILABILITY_ZONE:-us-west-1a}
+
+config_dir=$(cd $(dirname $0)/.. && pwd)
+cd $config_dir
+terraform apply \
+  -var "access_key=$AWS_ACCESS_KEY_ID" \
+  -var "secret_key=$AWS_SECRET_ACCESS_KEY" \
+  -var "region=$AWS_REGION" \
+  -var "availability_zone=$AWS_AVAILABILITY_ZONE" \
+  $@
